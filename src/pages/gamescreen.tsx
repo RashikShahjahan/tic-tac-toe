@@ -2,8 +2,12 @@ import { MouseEventHandler, useEffect, useState } from "react";
 import { type boardIdx, type Game } from "../game";
 import { move } from "../game";
 
+interface GameScreenProps {
+    x:string,
+    o:string
+}
 
-function GameScreen(){
+function GameScreen(props:GameScreenProps){
     const initialGameState:Game = {
         currPlayer:'x',
         boardState: ['', '', '', '', '', '', '', '', ''],
@@ -33,8 +37,12 @@ function GameScreen(){
           }
     }
 
+    function getPlayerName(){
+        return props.o ? game.currPlayer === 'o':'x';
+    }
     return(
         <div>
+            <h1>{getPlayerName()}</h1>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(3, 1fr)', width: '300px', height: '300px' }}>
                 {game.boardState.map((cell,index)=>{
                     const onClickHandler = onCellClick(index as boardIdx);
