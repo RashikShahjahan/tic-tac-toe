@@ -46,6 +46,14 @@ function getWinState(board:Board): winState {
 
 }
 
+export function AI(board:Board){
+    // Generate game tree: up to m future moves where m is the num of remaining empty spots in board
+    // Win 10,loss,-10,tie,0
+    // Back track for each non-leaf node:
+    // if maximizer turn  
+    
+}
+
 export function move(game:Game, movePos:boardIdx):Game{
     if (game.boardState[movePos] !== ''){
         return game;
