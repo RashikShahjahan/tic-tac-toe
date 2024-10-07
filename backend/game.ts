@@ -8,7 +8,8 @@ type VictoryPattern = [boardIdx, boardIdx, boardIdx];
 export type Game = {
     currPlayer: Player,
     boardState: Board,
-    winState: winState
+    winState: winState,
+    players:string[],
 };
 
 
@@ -46,6 +47,7 @@ function getWinState(board:Board): winState {
 
 }
 
+
 export function move(game:Game, movePos:boardIdx):Game{
     if (game.boardState[movePos] !== ''){
         return game;
@@ -58,8 +60,8 @@ export function move(game:Game, movePos:boardIdx):Game{
     const winState = getWinState(boardState);
 
     const currPlayer = game.currPlayer === 'x'?'o':'x';
-
-    return {currPlayer, boardState, winState};
+    const players = game.players;
+    return {currPlayer, boardState, winState, players};
 };
 
 
