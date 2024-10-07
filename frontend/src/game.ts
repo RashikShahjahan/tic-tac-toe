@@ -8,7 +8,8 @@ type VictoryPattern = [boardIdx, boardIdx, boardIdx];
 export type Game = {
     currPlayer: Player,
     boardState: Board,
-    winState: winState
+    winState: winState,
+    players:string[],
 };
 
 
@@ -46,13 +47,6 @@ function getWinState(board:Board): winState {
 
 }
 
-export function AI(board:Board){
-    // Generate game tree: up to m future moves where m is the num of remaining empty spots in board
-    // Win 10,loss,-10,tie,0
-    // Back track for each non-leaf node:
-    // if maximizer turn  
-    
-}
 
 export function move(game:Game, movePos:boardIdx):Game{
     if (game.boardState[movePos] !== ''){
@@ -66,8 +60,8 @@ export function move(game:Game, movePos:boardIdx):Game{
     const winState = getWinState(boardState);
 
     const currPlayer = game.currPlayer === 'x'?'o':'x';
-
-    return {currPlayer, boardState, winState};
+    const players = game.players;
+    return {currPlayer, boardState, winState, players};
 };
 
 

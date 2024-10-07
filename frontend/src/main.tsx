@@ -1,10 +1,22 @@
-import { StrictMode } from 'react'
+import GameLobby from "./gamelobby";
+import {createBrowserRouter,RouterProvider,} from "react-router-dom";
+import MultiPlayerGameScreen from "./multiplayergamescreen";
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <GameLobby />,
+    children: [
+      {
+        path: "/games/:gameId/",
+        element: <MultiPlayerGameScreen />,
+      },
+    ],
+  },
+]);
+
+createRoot(document.getElementById("root")!).render(
+  <RouterProvider router={router} />
+);
